@@ -1,4 +1,7 @@
 #include "sort.h"
+
+
+
 /**
  * swap - swaps two integers in an array
  * @a: first number
@@ -6,10 +9,10 @@
  */
 void swap(int *a, int *b)
 {
-int tmp = *a;
+	int tmp = *a;
 
-*a = *b;
-*b = tmp;
+	*a = *b;
+	*b = tmp;
 }
 
 /**
@@ -21,16 +24,16 @@ int tmp = *a;
  */
 void mergeup(int *array, size_t size, size_t fullsize)
 {
-int diff = size / 2;
-int i, j;
+	int diff = size / 2;
+	int i, j;
 
-printf("Result [%i/%i] (UP):\n", (int)size, (int)fullsize);
+	printf("Result [%i/%i] (UP):\n", (int)size, (int)fullsize);
 
-for (i = diff; i > 0; i--)
-for (j = 0; j + i < (int)size; j++)
-if (array[j] > array[j + i])
-swap(array + j, array + j + i);
-print_array(array, size);
+	for (i = diff; i > 0; i--)
+		for (j = 0; j + i < (int)size; j++)
+			if (array[j] > array[j + i])
+				swap(array + j, array + j + i);
+	print_array(array, size);
 }
 /**
  * mergedown - creats a decreasing bitonic sequence by merging
@@ -41,16 +44,16 @@ print_array(array, size);
  */
 void mergedown(int *array, size_t size, size_t fullsize)
 {
-int diff = size / 2;
-int i, j;
+	int diff = size / 2;
+	int i, j;
 
-printf("Result [%i/%i] (DOWN):\n", (int)size, (int)fullsize);
-for (i = diff; i > 0; i--)
-for (j = 0; j + i < (int)size; j++)
-if (array[j] < array[j + i])
-swap(array + j, array + j + i);
+	printf("Result [%i/%i] (DOWN):\n", (int)size, (int)fullsize);
+	for (i = diff; i > 0; i--)
+		for (j = 0; j + i < (int)size; j++)
+			if (array[j] < array[j + i])
+				swap(array + j, array + j + i);
 
-print_array(array, size);
+	print_array(array, size);
 }
 
 /**
@@ -61,23 +64,23 @@ print_array(array, size);
  */
 void bitonicSort(int *array, size_t size, size_t fullsize)
 {
-size_t mid = size / 2;
+	size_t mid = size / 2;
 
-if (size > 1)
-{
-printf("Merging [%i/%i] (UP):\n", (int)size, (int)fullsize);
-print_array(array, size);
-bitonicSort(array, mid, fullsize);
-mergeup(array, size, fullsize);
+	if (size > 1)
+	{
+		printf("Merging [%i/%i] (UP):\n", (int)size, (int)fullsize);
+		print_array(array, size);
+		bitonicSort(array, mid, fullsize);
+		mergeup(array, size, fullsize);
 
-/*if there is nothing left to be merged*/
-if (size + size > fullsize)
-return;
-printf("Merging [%i/%i] (DOWN):\n", (int)size, (int)fullsize);
-print_array(array + size, size);
-bitonicSort(array + size, mid, fullsize);
-mergedown(array + size, size, fullsize);
-}
+		/*if there is nothing left to be merged*/
+		if (size + size > fullsize)
+			return;
+		printf("Merging [%i/%i] (DOWN):\n", (int)size, (int)fullsize);
+		print_array(array + size, size);
+		bitonicSort(array + size, mid, fullsize);
+		mergedown(array + size, size, fullsize);
+	}
 
 }
 
@@ -88,7 +91,7 @@ mergedown(array + size, size, fullsize);
  */
 void bitonic_sort(int *array, size_t size)
 {
-if (!array || size < 2)
-return;
-bitonicSort(array, size, size);
+	if (!array || size < 2)
+		return;
+	bitonicSort(array, size, size);
 }
