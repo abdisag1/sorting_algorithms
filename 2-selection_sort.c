@@ -25,7 +25,7 @@ minim = j;
 if (minim != i)
 {
 temp = array[i];
-array[temp] = array[minim];
+array[i] = array[minim];
 array[minim] = temp;
 print_array(array, size); }}}
 
