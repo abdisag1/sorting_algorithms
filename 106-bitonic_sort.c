@@ -92,3 +92,4 @@ if (!array || size < 2)
 return;
 bitonicSort(array, size, size);
 }
+
