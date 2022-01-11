@@ -1,5 +1,4 @@
 #include "sort.h"
-
 /**
 * print_elements - prints elements in an array in a given format
 * @array: the array to be printed
