@@ -28,3 +28,4 @@ temp = array[i];
 array[i] = array[minim];
 array[minim] = temp;
 print_array(array, size); }}}
+
