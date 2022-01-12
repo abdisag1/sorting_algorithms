@@ -1,6 +1,5 @@
 #include "sort.h"
 #include <stdio.h>
-
 /**
  * partition - finds the partition for the quicksort using the Lomuto scheme
  * @array: array to sort
@@ -12,32 +11,33 @@
  */
 size_t partition(int *array, ssize_t lo, ssize_t hi, size_t size)
 {
-ssize_t i, j;
-int swap, pivot;
-pivot = array[hi];
-i = lo - 1;
-for (j = lo; j < hi; j++)
+ssize_t start, end;
+int temp, pivot;
+pivot = array[lo];
+start = lo;
+end = hi;
+while (start < end)
 {
-if (array[j] < pivot)
+while (array[start] <= pivot)
 {
-i++;
-if (i != j)
+start++;
+}
+while (array[end] > pivot)
 {
-swap = array[i];
-array[i] = array[j];
-array[j] = swap;
+end--;
+}
+if (start < end)
+{
+temp = array[start];
+array[start] = array[end];
+array[end] = temp;
+}
+}
+temp = array[lo];
+array[lo] = array[end];
+array[end] = temp;
 print_array(array, size);
-}
-}
-}
-if (array[hi] < array[i + 1])
-{
-swap = array[i + 1];
-array[i + 1] = array[hi];
-array[hi] = swap;
-print_array(array, size);
-}
-return (i + 1);
+return (end);
 }
 /**
  * quicksort - sorts a partition of an array of integers
